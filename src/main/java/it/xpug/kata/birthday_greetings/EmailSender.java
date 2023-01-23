@@ -9,12 +9,20 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class EmailSender implements SendMessage {
+    private final String smtpHost;
+    private final int smtpPort;
+
+    public EmailSender(String smtpHost, int smtpPort) {
+        this.smtpHost = smtpHost;
+        this.smtpPort = smtpPort;
+    }
+
     @Override
-    public void sendMessage(String smtpHost, int smtpPort, String sender, String subject, String body, String recipient) throws AddressException, MessagingException {
+    public void sendMessage(String sender, String subject, String body, String recipient) throws AddressException, MessagingException {
         // Create a mail session
         java.util.Properties props = new java.util.Properties();
-        props.put("mail.smtp.host", smtpHost);
-        props.put("mail.smtp.port", "" + smtpPort);
+        props.put("mail.smtp.host", this.smtpHost);
+        props.put("mail.smtp.port", "" + this.smtpPort);
         Session session = Session.getInstance(props, null);
 
         // Construct the message

@@ -13,7 +13,7 @@ public class BirthdayService {
 	 public BirthdayService(SendMessage message){
 		  this.sendMessage = message;
 	 }
-	public void sendGreetings(String fileName, XDate xDate, String smtpHost, int smtpPort) throws IOException, ParseException, AddressException, MessagingException {
+	public void sendGreetings(String fileName, XDate xDate) throws IOException, ParseException, AddressException, MessagingException {
 		BufferedReader in = new BufferedReader(new FileReader(fileName));
 		String str = "";
 		str = in.readLine(); // skip header
@@ -24,7 +24,7 @@ public class BirthdayService {
 				String recipient = employee.getEmail();
 				String body = "Happy Birthday, dear %NAME%!".replace("%NAME%", employee.getFirstName());
 				String subject = "Happy Birthday!";
-				sendMessage.sendMessage(smtpHost, smtpPort, "sender@here.com", subject, body, recipient);
+				sendMessage.sendMessage("sender@here.com", subject, body, recipient);
 			}
 		}
 	}
