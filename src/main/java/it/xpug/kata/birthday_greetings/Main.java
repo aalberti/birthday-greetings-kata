@@ -9,8 +9,8 @@ import javax.mail.internet.*;
 public class Main {
 
 	public static void main(String[] args) throws AddressException, IOException, ParseException, MessagingException {
-		BirthdayService service = new BirthdayService(new MailSender());
-		service.sendGreetings("employee_data.txt", new XDate(), "localhost", 25);
+		BirthdayService service = new BirthdayService(new MailSender("localhost", 25));
+		service.sendGreetings("employee_data.txt", new XDate());
 	}
 
 }
