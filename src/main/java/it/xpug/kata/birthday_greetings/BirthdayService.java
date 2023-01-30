@@ -12,6 +12,11 @@ import java.io.IOException;
 import java.text.ParseException;
 
 public class BirthdayService {
+	private final MailSender mailSender;
+
+	public BirthdayService(MailSender mailSender) {
+		this.mailSender = mailSender;
+	}
 
 	public void sendGreetings(String fileName, XDate xDate, String smtpHost, int smtpPort) throws IOException, ParseException, MessagingException {
 		BufferedReader in = new BufferedReader(new FileReader(fileName));
