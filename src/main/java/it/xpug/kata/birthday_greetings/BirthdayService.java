@@ -7,10 +7,10 @@ import java.io.IOException;
 import java.text.ParseException;
 
 public class BirthdayService {
-	private final MailSender mailSender;
+	private final Sender sender;
 
-	public BirthdayService(MailSender mailSender) {
-		this.mailSender = mailSender;
+	public BirthdayService(Sender sender) {
+		this.sender = sender;
 	}
 
 	public void sendGreetings(String fileName, XDate xDate) throws IOException, ParseException, MessagingException {
@@ -24,7 +24,7 @@ public class BirthdayService {
 				String recipient = employee.getEmail();
 				String body = "Happy Birthday, dear %NAME%!".replace("%NAME%", employee.getFirstName());
 				String subject = "Happy Birthday!";
-				mailSender.sendMessage(subject, body, recipient);
+				sender.sendMessage(subject, body, recipient);
 			}
 		}
 	}

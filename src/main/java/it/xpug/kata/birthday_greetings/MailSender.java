@@ -7,7 +7,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class MailSender {
+public class MailSender implements Sender {
     private final String smtpHost;
     private final int smtpPort;
 
@@ -16,7 +16,8 @@ public class MailSender {
         this.smtpPort = smtpPort;
     }
 
-    void sendMessage(String subject, String body, String recipient) throws MessagingException {
+    @Override
+    public void sendMessage(String subject, String body, String recipient) throws MessagingException {
         // Create a mail session
         java.util.Properties props = new java.util.Properties();
         props.put("mail.smtp.host", this.smtpHost);
